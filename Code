@@ -64,3 +64,324 @@ int main(void)
     closedir(dr);
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#include <stdio.h>
+#include <dirent.h>
+
+int main(void)
+{
+    struct dirent *de;  // Pointer for directory entry
+
+    // opendir() returns a pointer of DIR type.
+    DIR *dr = opendir("./Temp");
+
+    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    {
+        printf("Could not open current directory" );
+        return 0;
+    }
+
+    // Refer http://pubs.opengroup.org/onlinepubs/7990989775/xsh/readdir.html
+    // for readdir()
+
+    while ((de = readdir(dr)) != NULL)
+            printf("%s\n", de->d_name);
+            int i=0;
+    for(i=0;i<3;i++)
+    {
+        de=readdir(dr);
+        printf("%s\n",de->d_name);
+    }
+    FILE *fp1;
+    printf("%s\n\n",de->d_name);
+    fp1=fopen("de->d_name","r");
+    if(fp1==NULL)
+    {
+        printf("file fp1 is null");
+        exit(0);
+    }
+    char a[100];
+    char ch1=getc(fp1);
+    while(fp1!=NULL)
+    {
+        ch1=getc(fp1);
+        printf("%c\n",&ch1);
+    }
+
+    closedir(dr);
+    return 0;
+}*/
+
+
+
+
+
+
+
+/*#include <stdio.h>
+#include <dirent.h>
+#include <string.h>
+int main(void)
+{
+    struct dirent *de;  // Pointer for directory entry
+
+    // opendir() returns a pointer of DIR type.
+    DIR *dr = opendir(".");
+
+    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    {
+        printf("Could not open current directory" );
+        return 0;
+    }
+    FILE *fp1,*fp2;
+    char a[100];
+    int c=0;
+    printf("enter the data to be checked\n");
+    fp2=fopen("input.txt","w");                 //input from user to check to data
+    if(fp2==NULL)
+    {
+        printf("file fp2 is NULL\n");
+    }
+    while(strlen(gets(a))>0)
+    {
+        fputs(a,fp2);
+        fputs("\n",fp2);
+    }
+    fclose(fp2);
+    fp2=fopen("input.txt","r");
+    // Refer http://pubs.opengroup.org/onlinepubs/7990989775/xsh/readdir.html
+    // for readdir()
+    while ((de = readdir(dr)) != NULL)
+    {
+        printf("%s", de->d_name);
+        printf("%d\n\n\n",strlen(de->d_name));
+        fp1=fopen("de->d_name","r");
+        if(fp1==NULL)
+        {
+            printf("file fp1 is null\n");
+        }
+        char ch1=getc(fp1);
+        char ch2=getc(fp2);
+        while(ch1!=EOF&&ch2!=EOF)
+        {
+            if(ch1!=ch2)
+            {
+                printf("The file %s is not same as the file input.txt",de->d_name);
+                c=1;
+                break;
+            }
+            printf("%c\n",ch1);
+            printf("%c\n",ch2);
+            ch1=getc(fp1);
+            ch2=getc(fp2);
+        }
+        if(c==0)
+        {
+            printf("File %s is same as input.txt\n",de->d_name);
+        }
+    }
+    fclose(fp1);
+    fclose(fp2);
+    closedir(dr);
+    return 0;
+}*/
+
+
+
+
+/*#include <stdio.h>
+#include <dirent.h>
+
+int main(void)
+{
+    struct dirent *de;  // Pointer for directory entry
+
+    // opendir() returns a pointer of DIR type.
+    DIR *dr = opendir(".");
+
+    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    {
+        printf("Could not open current directory" );
+        return 0;
+    }
+
+    // Refer http://pubs.opengroup.org/onlinepubs/7990989775/xsh/readdir.html
+    // for readdir()
+    while ((de = readdir(dr)) != NULL)
+            printf("%s\n", de->d_name);
+
+    closedir(dr);
+    return 0;
+}*/
+
+
+
+/*#include <stdio.h>
+#include <dirent.h>
+
+int main(void)
+{
+    struct dirent *de;  // Pointer for directory entry
+
+    // opendir() returns a pointer of DIR type.
+    DIR *dr = opendir("./Temp");
+
+    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    {
+        printf("Could not open current directory" );
+        return 0;
+    }
+    // Refer http://pubs.opengroup.org/onlinepubs/7990989775/xsh/readdir.html
+    // for readdir()
+    int i=0;
+    char a[100];
+    while ((de = readdir(dr)) != NULL)
+    {
+         printf("%s\n", de->d_name);
+         i=0;
+         while(de->d_name[i]!=NULL)
+         {
+             a[i]=de->d_name[i];
+             i++;
+         }
+        a[i]='\0';
+        //printf("%s\n",a);
+
+    }
+    closedir(dr);
+    return 0;
+}*/
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <dirent.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void)
+{
+    struct dirent *de;  // Pointer for directory entry
+
+    // opendir() returns a pointer of DIR type.
+    DIR *dr = opendir(".");
+
+    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    {
+        printf("Could not open current directory" );
+        return 0;
+    }
+
+
+    FILE *fp1,*fp2;
+    char b[100];
+    fp1=fopen("input.txt","w");
+    if(fp1==NULL)
+    {
+        printf("file pointer fp1 is null\n");
+        exit(0);
+    }
+    printf("enter the data to be checked\n");
+    while(strlen(gets(b))>0)
+    {
+        fputs(b,fp1);
+        fputs("\n",fp1);
+    }
+    fclose(fp1);
+
+    int i=0;
+    char a[100],ch;
+    while ((de = readdir(dr)) != NULL)
+    {
+        fp1=fopen("input.txt","r");
+        // printf("\n%s\n", de->d_name);
+         i=0;
+         while(de->d_name[i]!=NULL)
+         {
+             a[i]=de->d_name[i];
+             i++;
+         }
+        a[i]='\0';
+        fp2=fopen(a,"r");
+        if(fp2==NULL)
+        {
+            printf("\nfile fp2 is null\n");
+            continue;
+        }
+        if(!strcmp(a,"input.txt") || !strcmp(a,"data.cbp") || !strcmp(a,"data.depend") || !strcmp(a,"data.layout") || !strcmp(a,"main.c"))
+        {
+            continue;
+        }
+       /* while((ch = fgetc(fp2)) != EOF)
+        {
+            printf("%c",ch);
+        }*/
+
+        printf("\n");
+        fclose(fp2);
+        fp2=fopen(a,"r");
+        char c=0;
+        char ch1=getc(fp1);
+        char ch2=getc(fp2);
+        while(ch1!=EOF || ch2!=EOF)
+        {
+            if(ch1!=ch2)
+            {
+                printf("The file %s is not same as the file input.txt",de->d_name);
+                c=1;
+                break;
+            }
+            ch1=getc(fp1);
+            ch2=getc(fp2);
+        }
+       /*if((ch1==EOF && ch2!=EOF) || (ch1!=EOF && ch2==EOF))
+        {
+        printf("This is error");
+          c=1;
+        }*/
+        if(c==0)
+        {
+            printf("File %s is same as input.txt\n",de->d_name);
+        }
+        //printf("\n%s\n",a);
+        fclose(fp2);
+        fclose(fp1);
+    }
+
+    closedir(dr);
+    return 0;
+}
+
